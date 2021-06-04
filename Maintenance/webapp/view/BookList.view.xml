@@ -1,0 +1,151 @@
+<mvc:View
+    controllerName="Quickstart.controller.BookList"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+    <Shell>
+	<App busy="{appView>/busy}">
+    <pages>
+	<Page title="{i18n>appName}">
+    <content>
+	<Table
+        id="booksList"
+		growing="true"
+		growingThreshold="10"
+		items="{path: '/BooksSet',
+        parameters: {
+			$count: true,
+			$$updateGroupId : 'booksGroup'
+			}}"
+        mode="SingleSelectLeft">
+        <headerToolbar>
+			<OverflowToolbar>
+			<content>
+			<Text text="New Book ISBN:"/>
+			<Input id="newBookIsbn"
+			tooltip="{i18n>enterNewBookIsbnText}" width="8%" maxLength="10"/>
+			<Text text="Author:"/>
+			<Input id="newBookAuthor"
+			tooltip="{i18n>enterNewBookAuthorText}" width="8%"/>
+			<Text text="Title:"/>
+			<Input id="newBookTitle"
+			tooltip="{i18n>enterNewBookTitleText}" width="8%"/>
+			<Text text="Published:"/>
+			<Input id="newBookDataPublished"
+			tooltip="{i18n>enterNewBookDataText}" width="8%"/>
+			<Text text="Language:"/>
+			<Input value="EN" id="newBookLanguage"
+			tooltip="{i18n>enterNewBookLanguageText}" width="8%"/>
+			<Text text="Total Number:"/>
+			<Input value="0" id="newBookTotalNumber"
+			tooltip="{i18n>enterNewBookTotalNumberText}" width="8%"/>
+            <Button
+				id="addBookButton"
+				icon="sap-icon://add"
+				tooltip="{i18n>createButtonText}"
+				press=".onCreate">
+				<layoutData>
+				<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Button>
+            <Button
+				id="updateBookButton"
+				icon="sap-icon://edit"
+				tooltip="{i18n>updateButtonText}"
+				press=".onUpdate">
+				<layoutData>
+				<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Button> 
+			<Button
+				id="deleteUserButton"
+				icon="sap-icon://delete"
+				tooltip="{i18n>deleteButtonText}"
+				press=".onDelete">
+				<layoutData>
+				<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Button>
+			</content>
+			</OverflowToolbar>
+			</headerToolbar>
+		<columns>
+		<Column id="isbn">
+			<Text text="{i18n>isbnLabelText}"/>
+		</Column>
+		<Column id="author">
+			<Text text="{i18n>authorLabelText}"/>
+		</Column>
+		<Column id="title">
+			<Text text="{i18n>titleLabelText}"/>
+		</Column>
+		<Column id="datePublished">
+			<Text text="{i18n>datePublishedLabelText}"/>
+		</Column>
+        <Column id="language">
+			<Text text="{i18n>languageLabelText}"/>
+		</Column>
+        <Column id="totalNumber">
+			<Text text="{i18n>totalNumberLabelText}"/>
+		</Column>
+        <Column id="available">
+			<Text text="{i18n>availableLabelText}"/>
+		</Column>
+        <Column id="createOn">
+			<Text text="{i18n>createdOnLabelText}"/>
+		</Column>
+        <Column id="createdBy">
+			<Text text="{i18n>createdByLabelText}"/>
+		</Column>
+        <Column id="changedOn">
+			<Text text="{i18n>changedOnLabelText}"/>
+		</Column>
+        <Column id="changedBy">
+			<Text text="{i18n>changedByLabelText}"/>
+		</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+            <Text text="{ISBN}"/>
+            <cells>
+			<Input value="{Author}"
+                valueLiveUpdate="true"
+				liveChange=".onInputChange"/>
+            </cells>
+            <cells>
+			<Input value="{Title}"
+                valueLiveUpdate="true"
+				liveChange=".onInputChange"/>
+            </cells>
+            <cells>
+			<Input value="{ path: 'Data_Published', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd:MM:yyyy', UTC: true }}"
+                valueLiveUpdate="true"
+			    liveChange=".onInputChange"/>
+            </cells>
+            <cells>
+			<Input value="{Language}"
+                valueLiveUpdate="true"
+			    liveChange=".onInputChange"/>
+            </cells>
+            <cells>
+			<Input value="{Total_Nr_Books}"
+                valueLiveUpdate="true"
+			    liveChange=".onInputChange"/>
+            </cells>
+            <cells>
+			<Input value="{Available_Books}"
+                valueLiveUpdate="true"
+			    liveChange=".onInputChange"/>
+            </cells>
+            <Text text="{ path: 'Created_On', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd:MM:yyyy', UTC: true }}"/>
+            <Text text="{Created_By}"/>
+            <Text text="{ path: 'Changed_On', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd:MM:yyyy', UTC: true }}"/>
+            <Text text="{Changed_By}"/>
+		    </ColumnListItem>
+		</items>
+	</Table>
+    </content>
+    </Page>
+    </pages>
+    </App>
+	</Shell>
+ </mvc:View>
