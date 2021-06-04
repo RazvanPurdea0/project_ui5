@@ -1,0 +1,82 @@
+<mvc:View
+	controllerName="Quickstart.controller.CheckedBooksList"
+	xmlns="sap.m"
+	xmlns:t="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc">
+    <Shell>
+	<App busy="{appView>/busy}">
+    <pages>
+	<Page title="{i18n>appName}">
+    <content>
+    <Table
+        id="checkedBooksList"
+		growing="true"
+		growingThreshold="10"
+		items="{/BorrowedBooksSet}">
+        <headerToolbar>
+			<OverflowToolbar>
+				<content>
+				<Text text="Search Book by First Name:"/>
+				<SearchField id="SearchFieldFirstName"
+				width="12%"
+				placeholder="{i18n>searchFieldPlaceholder}"
+				search=".onFilterFirstName"/>
+				<Text text="Last Name:"/>
+				<SearchField id="SearchFieldLastName"
+				width="12%"
+				placeholder="{i18n>searchFieldPlaceholder}"
+				search=".onFilterLastName"/>
+				<Text text="Title:"/>
+				<SearchField id="SearchFieldTitle"
+				width="12%"
+				placeholder="{i18n>searchFieldPlaceholder}"
+				search=".onFilterTitle"/>
+				<Text text="Author:"/>
+				<SearchField id="SearchFieldAuthor"
+				width="12%"
+				placeholder="{i18n>searchFieldPlaceholder}"
+				search=".onFilterAuthor"/>
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+		<Column id="firstName">
+			<Text text="{i18n>FirstNameLabelText}"/>
+		</Column>
+		<Column id="LastName">
+			<Text text="{i18n>lastNameLabelText}"/>
+		</Column>
+		<Column id="checkoutDate">
+			<Text text="{i18n>checkoutDateLabelText}"/>
+		</Column>
+		<Column id="returnDatePublished">
+			<Text text="{i18n>returnDateLabelText}"/>
+		</Column>
+        <Column id="isbn">
+			<Text text="{i18n>isbnLabelText}"/>
+		</Column>
+        <Column id="Title">
+			<Text text="{i18n>titleLabelText}"/>
+		</Column>
+        <Column id="author">
+			<Text text="{i18n>authorLabelText}"/>
+		</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+            <Text text="{First_Name}"/>
+            <Text text="{Last_Name}"/>
+            <Text text="{ path: 'Checkout_Date', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd:MM:yyyy', UTC: true }}"/>
+            <Text text="{ path: 'Return_Date', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd:MM:yyyy', UTC: true }}"/>
+			<Text text="{ISBN}"/>
+			<Text text="{Title}"/>
+			<Text text="{Author}"/>
+		    </ColumnListItem>
+		</items>
+	</Table>
+    </content>
+    </Page>
+    </pages>
+    </App>
+	</Shell>
+ </mvc:View>

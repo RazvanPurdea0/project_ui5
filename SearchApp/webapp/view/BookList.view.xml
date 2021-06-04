@@ -1,0 +1,96 @@
+<mvc:View
+    controllerName="Quickstart.controller.BookList"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+    <Shell>
+	<App busy="{appView>/busy}">
+    <pages>
+	<Page title="{i18n>appName}">
+    <content>
+	<Table
+        id="booksList"
+		growing="true"
+		growingThreshold="10"
+		items="{path: '/BooksSet',
+        parameters: {
+			$count: true,
+			$$updateGroupId : 'booksGroup'
+			}}"
+        mode="SingleSelectLeft">
+        <headerToolbar>
+			<OverflowToolbar>
+			<content>
+			<Text text="Search Book by ISBN:"/>
+			<SearchField id="isbnSearchField"
+			width="12%" maxLength="10" 
+			placeholder="{i18n>searchFieldPlaceholder}"
+			search=".onSearchIsbn"/>
+			<Text text="Author:"/>
+			<SearchField id="authorSearchField"
+			width="12%"
+			placeholder="{i18n>searchFieldPlaceholder}"
+			search=".onSearchAuthor"/>
+			<Text text="Title:"/>
+			<SearchField id="titleSearchField"
+			width="12%"
+			placeholder="{i18n>searchFieldPlaceholder}"
+			search=".onSearchTitle"/>
+			<Text text="Date Published:"/>
+			<SearchField id="datePublishedSearchField"
+			width="12%"
+			placeholder="{i18n>searchFieldPlaceholder}"
+			search=".onSearchDate"/>
+			<Text text="Language:"/>
+			<SearchField id="languageSearchField"
+			width="12%"
+			placeholder="{i18n>searchFieldPlaceholder}"
+			search=".onSearchLanguage"/>
+            <Button
+				id="checkoutBookButton"
+				icon="sap-icon://add"
+				tooltip="{i18n>checkoutButtonText}"
+				press=".onCheckout">
+				<layoutData>
+				<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Button>
+			</content>
+			</OverflowToolbar>
+			</headerToolbar>
+		<columns>
+		<Column id="isbn">
+			<Text text="{i18n>isbnLabelText}"/>
+		</Column>
+		<Column id="author">
+			<Text text="{i18n>authorLabelText}"/>
+		</Column>
+		<Column id="title">
+			<Text text="{i18n>titleLabelText}"/>
+		</Column>
+		<Column id="datePublished">
+			<Text text="{i18n>datePublishedLabelText}"/>
+		</Column>
+        <Column id="language">
+			<Text text="{i18n>languageLabelText}"/>
+		</Column>
+        <Column id="available">
+			<Text text="{i18n>availableLabelText}"/>
+		</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+            <Text text="{ISBN}"/>
+            <Text text="{Author}"/>
+			<Text text="{Title}"/>
+			<Text text="{ path: 'Data_Published', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd:MM:yyyy', UTC: true }}"/>
+			<Text text="{Language}"/>
+			<Text text="{Available_Books}"/>
+		    </ColumnListItem>
+		</items>
+	</Table>
+    </content>
+    </Page>
+    </pages>
+    </App>
+	</Shell>
+ </mvc:View>
